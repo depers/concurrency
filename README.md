@@ -12,10 +12,10 @@
 可见性|[note](/note/可见性.md)|2019/3/4
 有序性|[note](/note/有序性.md)|2019/3/4
 安全发布对象|笔记|日期
-发布与逸出|[note](/note/发布与逸出.md)|2019/3/4
-安全发布对象的四种方法|[note](/note/安全发布对象的四种方法.md)|2019/3/4
+发布与逸出|[note](/note/发布与逸出.md)|2019/3/5
+安全发布对象的四种方法|[note](/note/安全发布对象的四种方法.md)|2019/3/5
 
 ## 感谢
-[【博客】Java技术驿站](http://cmsblogs.com/)
-[【视频】Java并发编程入门与高并发面试](https://coding.imooc.com/class/195.html)
+[【博客】Java技术驿站](http://cmsblogs.com/)   
+[【视频】Java并发编程入门与高并发面试](https://coding.imooc.com/class/195.html)  
 [【项目】Java-concurrency](https://github.com/CL0610/Java-concurrency)
