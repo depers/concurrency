@@ -24,10 +24,12 @@ public class SingletonExample4 {
 
     // 静态的工厂方法
     public static SingletonExample4 getInstance(){
-        if (instance == null){ // 双重检测机制
-            synchronized (SingletonExample4.class){ // 同步锁
+        if (instance == null){ // 双重检测机制          // 2.线程B执行到这，然后判断instance不为null，直接return，
+                                                       // 但是instance = new SingletonExample4()这句线程A才执行到第二步，并没有执行第三步
+                                                       // 所以这里是有问题的
+            synchronized (SingletonExample4.class){ // 同步锁，将对象的引用保存到一个有锁保护的域中
                 if (instance == null){
-                    instance = new SingletonExample4();
+                    instance = new SingletonExample4(); // 1.线程A执行到第二步：instance = memory 设置instance指向刚分配的
                 }
             }
 

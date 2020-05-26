@@ -24,7 +24,7 @@ public class SingletonExample1 {
     // 静态的工厂方法
     public static SingletonExample1 getInstance(){
         if (instance == null){
-            // 这里存在线程不安全，若有两个线程通知执行到这一步
+            // 这里存在线程不安全，若有两个线程通知执行到这一步，就会有两个对象被创建
             instance = new SingletonExample1();
         }
         return instance;

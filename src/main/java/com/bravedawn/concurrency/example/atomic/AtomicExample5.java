@@ -14,6 +14,9 @@ public class AtomicExample5 {
     private static AtomicIntegerFieldUpdater<AtomicExample5> updater =
             AtomicIntegerFieldUpdater.newUpdater(AtomicExample5.class, "count");
 
+    /**
+     * 这个字段必须定义为volatile
+     */
     @Getter
     public volatile int count = 100;
 

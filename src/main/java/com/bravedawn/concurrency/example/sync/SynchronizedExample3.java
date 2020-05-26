@@ -34,11 +34,13 @@ public class SynchronizedExample3 {
 
         ExecutorService executorService = Executors.newCachedThreadPool();
         executorService.execute(() -> {
-            example1.test1(1);
+            //example1.test1(1);
+            example1.test2(1);
         });
 
         executorService.execute(() -> {
-            example2.test1(2);
+            //example2.test1(2);
+            example2.test2(2);
         });
 
     }

@@ -12,11 +12,12 @@ import lombok.extern.slf4j.Slf4j;
 @NotRecommend
 public class Escape {
 
-    private int thisCanBeEscape = 0;
+    private int thisCanBeEscape;
 
 
     public Escape(){
         new InnerClass();
+        thisCanBeEscape = 1;
     }
 
     private class InnerClass{
