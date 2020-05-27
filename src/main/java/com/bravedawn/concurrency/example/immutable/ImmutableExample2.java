@@ -21,6 +21,10 @@ public class ImmutableExample2 {
     static {
         map.put(1, 2);
         map.put(2, 3);
+        /**
+         * 将map转为一个UnmodifiableMap，禁止了相关的更改操作
+         * 注意：map声明是不能使用final修饰
+         */
         map = Collections.unmodifiableMap(map);
     }
 
