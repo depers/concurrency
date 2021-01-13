@@ -32,6 +32,7 @@ public class SynchronizedExample3 {
         SynchronizedExample3 example1 = new SynchronizedExample3();
         SynchronizedExample3 example2 = new SynchronizedExample3();
 
+        // 不同对象调用同步方法顺序执行，不能同时进行，只能一个一个对象执行
         ExecutorService executorService = Executors.newCachedThreadPool();
         executorService.execute(() -> {
             //example1.test1(1);
