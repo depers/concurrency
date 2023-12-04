@@ -12,6 +12,11 @@ import java.util.concurrent.Semaphore;
 @NotThreadSafe
 public class CountExample1 {
 
+    /**
+     * 在多线程情况下，int是线程不安全的，因为这里没有做工作内存和主内存的比较工作，多个线程共享变量count，A和B线程同时加1之后count为1，完成计数之后将工作内存的count值
+     * 同步到主内存，按照先后此时计数应该是2才对，所以这里因为内存模型的原因会导致线程不安全
+     */
+
     // 请求总数
     public static int clientTotal = 5000;
 

@@ -12,11 +12,16 @@ import lombok.extern.slf4j.Slf4j;
 @NotRecommend
 public class Escape {
 
+    /**
+     * 对象逸出：一种错误的发布。当一个对象还没有构造完成时，就使它被其它线程所见。
+     */
+
     private int thisCanBeEscape;
 
 
     public Escape(){
         new InnerClass();
+        // 该变量还未完成初始化，this对象就已经逸出
         thisCanBeEscape = 1;
     }
 

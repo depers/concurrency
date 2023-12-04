@@ -18,8 +18,9 @@ public class ThreadPoolExample6 {
 
         /**
          * scheduleWithFixedDelay以指定的延时去执行任务
-         * scheduleWithFixedDelay，是以上一个任务结束时开始计时，period时间过去后，立即执行。
-         * 任务启动之后延时1秒开始执行，每隔3秒执行一次任务，一直执行下去
+         * scheduleWithFixedDelay，不管任务执行多久，都会等上一次任务执行完毕后再延迟delay后去执行下次任务。
+         *
+         * 下面的案例：任务启动之后延时1秒开始执行，每隔3秒执行一次任务，一直执行下去
          */
         executorService.scheduleWithFixedDelay(new Runnable() {
             @Override

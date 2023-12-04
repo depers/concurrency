@@ -12,6 +12,10 @@ import java.util.Arrays;
 @NotThreadSafe
 public class UnSafePublish {
 
+    /**
+     * 发布对象：是一个对象能够被当前范围之外的代码所使用
+     */
+
     private String[] state = {"a", "b", "c"};
 
     public String[] getState(){

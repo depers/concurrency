@@ -13,6 +13,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 @ThreadSafe
 public class CountExample2 {
 
+    /**
+     * 使用AtomicInteger实现计数的原子操作
+     * 其中incrementAndGet()和getAndIncrement()执行的逻辑是相同的，但是返回的值不一样，incrementAndGet()返回的是加1之后的值，getAndIncrement()返回的是加1之前的旧值
+     */
+
     // 请求总数
     public static int clientTotal = 5000;
 
@@ -44,6 +49,6 @@ public class CountExample2 {
 
     private static void add(){
         count.incrementAndGet();
-        // count.getAndIncrement();
+        //count.getAndIncrement();
     }
 }

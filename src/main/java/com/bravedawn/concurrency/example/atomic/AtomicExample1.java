@@ -43,6 +43,7 @@ public class AtomicExample1 {
     }
 
     private static void add(){
+        log.info("此时的count={}", count);
         count.incrementAndGet();
         // count.getAndIncrement();
     }
