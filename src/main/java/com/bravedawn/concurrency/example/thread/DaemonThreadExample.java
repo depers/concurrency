@@ -15,7 +15,8 @@ import java.time.LocalTime;
 public class DaemonThreadExample extends Thread{
 
     /**
-     * 守护线程
+     * 守护线程，是指为其他线程服务的线程。
+     * 守护线程不能持有需要关闭的资源（如打开文件等）
      */
 
 

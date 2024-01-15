@@ -21,6 +21,11 @@ public class ThreadExample3 {
     public static void main(String[] args) throws InterruptedException {
         Thread t = new Thread(() -> {
             log.info("新启线程执行");
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         log.info("start");

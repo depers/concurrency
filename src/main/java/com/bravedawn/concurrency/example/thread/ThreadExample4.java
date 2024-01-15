@@ -31,7 +31,7 @@ public class ThreadExample4 extends Thread {
     public static void main(String[] args) throws InterruptedException {
         Thread t = new ThreadExample4();
         t.start();
-        Thread.sleep(1); // 暂停1ms
+        Thread.sleep(10); // 暂停1ms
         t.interrupt(); // 中断线程
         t.join(); // 主线程等待t线程执行结束
         log.info("end");
