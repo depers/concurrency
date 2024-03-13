@@ -14,13 +14,24 @@ public class RequestHolder {
         requestHolder.set(id);
     }
 
-
     public static Long getId(){
         return requestHolder.get();
     }
 
     public static void remove(){
         requestHolder.remove();
+    }
+
+
+    public static void main(String[] args) {
+        // 使用模型
+        try {
+            requestHolder.set(1l);
+            //...
+            requestHolder.get();
+        } finally {
+            requestHolder.remove();
+        }
     }
 
 }

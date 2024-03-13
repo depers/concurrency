@@ -3,7 +3,7 @@
  * @Project : concurrency
  * @Date : Created in 2023-11-23 14:16
  */
-package com.bravedawn.concurrency.example.threadPool.customthreadpool;
+package com.bravedawn.concurrency.example.threadPool.customthreadpool.v1;
 
 
 /**

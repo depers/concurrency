@@ -30,7 +30,7 @@ public class ArrayListExample {
 
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
-        final Semaphore semaphore = new Semaphore(threadTotal);
+        final Semaphore semaphore = new Semaphore(200);
         final CountDownLatch countDownLatch = new CountDownLatch(clientTotal);
         for (int i = 0; i < clientTotal; i++){
             final int count = i;

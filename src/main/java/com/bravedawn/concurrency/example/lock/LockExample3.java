@@ -9,46 +9,46 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+/**
+ * 读写锁的应用
+ */
+
 @Slf4j
 public class LockExample3 {
 
-    private final Map<String, Data> map = new TreeMap<>();
+    private int data;
+    private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
-    private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-
-    private final Lock readLock = lock.readLock();
-
-    private final Lock writeLock = lock.writeLock();
-
-    public Data get(String key){
-        readLock.lock();
+    public void readData() {
+        lock.readLock().lock();
         try {
-            return map.get(key);
+            // 读取数据
+            log.info("读取数据：" + data);
         } finally {
-            readLock.unlock();
+            lock.readLock().unlock();
         }
     }
 
-    public Set<String> getAllKeys(){
-        readLock.lock();
+    public void writeData(int value) {
+        lock.writeLock().lock();
         try {
-            return map.keySet();
-        }finally {
-            readLock.unlock();
-        }
-    }
-
-    public Data put(String key, Data value){
-        writeLock.lock();
-        try {
-            return map.put(key, value);
+            // 写入数据
+            data = value;
         } finally {
-            writeLock.unlock();
+            lock.writeLock().unlock();
         }
     }
 
-    class Data{
+    public static void main(String[] args) {
+        LockExample3 example = new LockExample3();
 
+        // 创建多个线程进行读操作
+        for (int i = 0; i < 5; i++) {
+            new Thread(() -> example.readData()).start();
+        }
+
+        // 创建一个线程进行写操作
+        new Thread(() -> example.writeData(100)).start();
     }
 
 }

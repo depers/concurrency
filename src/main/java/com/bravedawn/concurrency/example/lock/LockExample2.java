@@ -10,6 +10,10 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * ReenTrantLock的简单使用
+ */
+
 @Slf4j
 @ThreadSafe
 public class LockExample2 {

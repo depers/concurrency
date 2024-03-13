@@ -24,3 +24,6 @@
 /nbdist/
 /.nb-gradle/
 /.mvn/
+
+# 其他的目录
+logs/

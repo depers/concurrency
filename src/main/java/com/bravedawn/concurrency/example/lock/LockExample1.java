@@ -8,6 +8,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
+/**
+ * synchronized关键字的使用
+ */
+
 @Slf4j
 @ThreadSafe
 public class LockExample1 {

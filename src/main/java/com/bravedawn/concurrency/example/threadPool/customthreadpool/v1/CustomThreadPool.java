@@ -1,4 +1,4 @@
-package com.bravedawn.concurrency.example.threadPool.customthreadpool;
+package com.bravedawn.concurrency.example.threadPool.customthreadpool.v1;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,32 +15,26 @@ import java.util.concurrent.*;
 @Slf4j
 public class CustomThreadPool extends ThreadPoolExecutor {
 
-
-    private final ThreadLocal<Map<String, Object>> threadLocal = new ThreadLocal<>();
+    // 统计线程执行耗时
+    private final ThreadLocal<Long> threadLocal = new ThreadLocal<>();
 
     public CustomThreadPool(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory, RejectedExecutionHandler handler) {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, handler);
     }
 
+
     @Override
     protected void beforeExecute(Thread t, Runnable r) {
-        super.beforeExecute(t, r);
-        log.info("异步线程开始执行，threadId={}", t.getName());
-        Map<String, Object> threadMap = new HashMap<>();
-        threadMap.put("startTime", System.currentTimeMillis());
-        threadMap.put("threadId", t.getName());
-        threadLocal.set(threadMap);
+        threadLocal.set(System.currentTimeMillis());
     }
-
 
     @Override
     protected void afterExecute(Runnable r, Throwable t) {
-        super.afterExecute(r, t);
-        Map<String, Object> map = threadLocal.get();
-        long startTime = (long) map.get("startTime");
-        String threadId = (String) map.get("threadId");
-        long endTime = System.currentTimeMillis();
-        log.info("异步线程执行结束，threadId={}, 耗时={}ms", threadId, endTime - startTime);
+        Long start = threadLocal.get();
+        threadLocal.remove();
+        long thisTime = System.currentTimeMillis() - start;
+        log.info("任务耗时[{}]ms", thisTime);
+
     }
 
 
