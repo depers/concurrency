@@ -9,7 +9,7 @@ public class ThreadLocalExample4 {
 
 
     /**
-     * -Xmx100m -Xms100m
+     * -Xmx=100m -Xms=100m
      * 这里我新建一个线程去异步创建ThreadLocal，当线程执行完成之后，我手动触发GC，是可以对这块内存进行回收的。
      * 也就是说异步执行的线程中如果使用了ThreadLocal，当线程执行完后，触发gc就会对其内存进行回收
      */
