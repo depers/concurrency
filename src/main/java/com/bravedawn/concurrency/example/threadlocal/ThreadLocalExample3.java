@@ -1,27 +1,40 @@
 package com.bravedawn.concurrency.example.threadlocal;
 
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.concurrent.locks.LockSupport;
+
 /**
- * @Author : fengx9
- * @Project : concurrency-master
- * @Date : Created in 2024-03-13 16:49
+ * @author : depers
+ * @program : concurrency
+ * @date : Created in 2024/3/17 22:38
  */
+
+@Slf4j
 public class ThreadLocalExample3 {
 
 
-    /**
-     * -Xmx100m -Xms100m
-     *
-     * 创建了一个主线程的ThreadLocal，我将threadlocal和value都置为null，手动在jvisualvm中触发gc并没有减少堆栈内存
-     */
     public static void main(String[] args) throws InterruptedException {
-        Thread.sleep(10000);
 
-        Byte[] array = new Byte[1024 * 1024 * 20];
-        ThreadLocal threadLocal = new ThreadLocal();
-        threadLocal.set(array);
+        Thread t = new Thread(() -> {
+            ThreadLocal<String> threadLocal = new ThreadLocal();
+            threadLocal.set("dev_fengxiao@163.com");
+            log.info("--threadLocal参数设置完成");
+            try {
+                Thread.sleep(30000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(Thread.currentThread());
+        });
 
-        // 移除
-        threadLocal.remove();
+
+        t.start();
+
+        System.gc();
+        Thread.sleep(1000);
+
+        System.out.println(t);
 
         Thread.sleep(100000);
     }

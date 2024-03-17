@@ -10,32 +10,37 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ThreadLocalExample {
 
-
-    /**
-     * -Xmx100m -Xms100m -Xlog:gc+heap=trace:stdout:time
-     *
-     * 创建了一个主线程的ThreadLocal，我将threadlocal和value都置为null，手动在jvisualvm中触发gc并没有减少堆栈内存
-     * 因为主线程还没有被终止，所以线程所持有的ThreadLocalMap还不能被清理
-     */
     public static void main(String[] args) throws InterruptedException {
+        Thread main = Thread.currentThread();
 
-        // 创建一个20m的数据
-        Byte[] array = new Byte[1024 * 1024 * 20];
-        ThreadLocal threadLocal = new ThreadLocal();
-        threadLocal.set(array);
-
-        // 将强引用变量置为nul
-        threadLocal = null;
-        array = null;
+        A a = getValue();
+        //getValue();
 
         log.info("执行gc");
         System.gc();
+        Thread.sleep(2000);
 
-        if (Thread.currentThread().isAlive()) {
-            log.info("异步线程的状态={}", Thread.currentThread().getState());
+        System.out.println(main);
+    }
+
+
+    private static A getValue() {
+        A a = new A();
+        System.out.println("value=" + a.get());
+        return a;
+    }
+
+
+    public static class A {
+        ThreadLocal<String> threadLocal = ThreadLocal.withInitial(() -> "字符串");
+
+        public String get() {
+            return threadLocal.get();
         }
 
-        // 保持主线程
-        Thread.sleep(10000);
+        public void set(String str) {
+            threadLocal.set(str);
+        }
     }
+
 }
