@@ -15,27 +15,19 @@ public class ThreadLocalExample3 {
 
 
     public static void main(String[] args) throws InterruptedException {
+        func();
 
-        Thread t = new Thread(() -> {
-            ThreadLocal<String> threadLocal = new ThreadLocal();
-            threadLocal.set("dev_fengxiao@163.com");
-            log.info("--threadLocal参数设置完成");
-            try {
-                Thread.sleep(30000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println(Thread.currentThread());
-        });
+        System.gc(); // 手动触发垃圾回收
+        Thread.sleep(100);
 
+        Thread t = Thread.currentThread();  // 第二个断点
+        Thread.sleep(10000);
+    }
 
-        t.start();
-
-        System.gc();
-        Thread.sleep(1000);
-
-        System.out.println(t);
-
-        Thread.sleep(100000);
+    private static void func() {
+        ThreadLocal<String> threadLocal = new ThreadLocal();
+        threadLocal.set("dev_fengxiao@163.com");
+        log.info("threadLocal参数设置完成");
+        Thread t = Thread.currentThread(); // 第一个断点
     }
 }
