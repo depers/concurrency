@@ -1,4 +1,4 @@
-package com.bravedawn.v.example.aqs;
+package com.bravedawn.concurrency.example.aqs;
 
 import lombok.extern.slf4j.Slf4j;
 
