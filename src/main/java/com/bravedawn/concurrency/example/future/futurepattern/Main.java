@@ -18,7 +18,6 @@ public class Main {
         Data data = client.request("name");
         log.info("请求完毕");
 
-
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

@@ -22,7 +22,7 @@ public class FutureData implements Data{
     }
 
     @Override
-    public String getResult() {
+    public synchronized String getResult() {
         while (!isReady) {
             try {
                 wait();

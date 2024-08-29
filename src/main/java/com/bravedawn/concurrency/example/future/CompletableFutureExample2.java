@@ -9,6 +9,8 @@ import java.util.concurrent.ExecutionException;
  * @author : depers
  * @program : concurrency
  * @date : Created in 2024/7/8 21:57
+ *
+ * supplyAsync方法的使用
  */
 @Slf4j
 public class CompletableFutureExample2 {

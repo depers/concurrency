@@ -1,4 +1,4 @@
-package com.bravedawn.concurrency.example.aqs;
+package com.bravedawn.concurrency.example.future;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,5 +38,6 @@ public class FutureTaskExample2 {
             log.info("打印异步执行结果，result={}", s);
         }
         threadPoolExecutor.shutdown();
+
     }
 }
