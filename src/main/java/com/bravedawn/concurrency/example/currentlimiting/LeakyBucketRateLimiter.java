@@ -9,10 +9,10 @@ package com.bravedawn.concurrency.example.currentlimiting;
  */
 public class LeakyBucketRateLimiter {
 
-    private long capacity;
-    private long rate;
-    private long water;
-    private long lastTime;
+    private long capacity; // 漏桶容量，即最大允许的请求数量 
+    private long rate;  // 漏水速率，即每秒允许通过的请求数量
+    private long water; // 漏桶当前水量
+    private long lastTime; // 上一次请求通过的时间戳
 
     public LeakyBucketRateLimiter(long capacity, long rate) {
         this.capacity = capacity;

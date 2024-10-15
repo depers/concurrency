@@ -9,10 +9,10 @@ package com.bravedawn.concurrency.example.currentlimiting;
  */
 public class FixedWindowRateLimiter {
 
-    private long windowsTime;
-    private long windowsCount;
-    private long counter;
-    private long lastTime;
+    private long windowsTime; // 定义窗口的时间范围，可以是1000ms
+    private long windowsCount; // 定义窗口阀值，可以使100，也就是说1s可以接受100个请求
+    private long counter; // 计数器
+    private long lastTime; // 上一次请求的时间
 
 
     public FixedWindowRateLimiter(int windowsTime, int windowsCount) {
