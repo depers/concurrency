@@ -35,5 +35,7 @@ public class CallableExample2 {
             log.error(e.getMessage(), e);
         }
 
+        executorService.shutdown();
+
     }
 }
