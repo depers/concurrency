@@ -6,7 +6,7 @@ public class ExecutorExample2 {
 
 
     /**
-     * 测试ThreadPoolExecutor的相关逻辑
+     * 测试ThreadPoolExecutor中ctl变量的作用
      */
 
     private static final int COUNT_BITS = Integer.SIZE - 3;
@@ -29,14 +29,16 @@ public class ExecutorExample2 {
 
 
     public static void main(String[] args) {
-        System.out.println("接受新任务并处理任务队列的任务, i = " + RUNNING + "二进制数是" + Integer.toBinaryString(RUNNING));
-        System.out.println(Integer.toBinaryString(SHUTDOWN));
-        System.out.println(Integer.toBinaryString(STOP));
-        System.out.println(Integer.toBinaryString(TIDYING));
-        System.out.println(Integer.toBinaryString(TERMINATED));
+        System.out.println("RUNNING:接受新任务并处理任务队列的任务, i = " + RUNNING + "，二进制数是" + Integer.toBinaryString(RUNNING));
+        System.out.println("SHUTDOWN:不接受新任务，但处理任务队列的任务, i = " + SHUTDOWN + "，二进制数是" + Integer.toBinaryString(SHUTDOWN));
+        System.out.println("STOP:不接受新任务，不处理任务队列的任务，并中断正在进行的任务, i = " + STOP + "，二进制数是" + Integer.toBinaryString(STOP));
+        System.out.println("TIDYING:所有任务都已终止，workerCount 为 0，线程转换为 TIDYING 状态，将运行 terminated() 钩子方法, i = " + TIDYING + "，二进制数是" + Integer.toBinaryString(TIDYING));
+        System.out.println("TERMINATED:terminate() 方法执行完成, i = " + TERMINATED + "，二进制数是" + Integer.toBinaryString(TERMINATED));
 
-        System.out.println(Integer.toBinaryString(ctl.get()));
+        System.out.println("ctl的初始状态：" + ctl.get() + "，二进制数是" + Integer.toBinaryString(ctl.get()));
 
-        System.out.println(COUNT_MASK);
+        System.out.println(Integer.toBinaryString(COUNT_MASK)); // 11111111111111111111111111111
+//        System.out.println(Integer.toBinaryString(~COUNT_MASK)); // 11111111111111111111111111111
+
     }
 }
