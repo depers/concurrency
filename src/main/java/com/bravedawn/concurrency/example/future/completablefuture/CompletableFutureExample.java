@@ -1,4 +1,4 @@
-package com.bravedawn.concurrency.example.future;
+package com.bravedawn.concurrency.example.future.completablefuture;
 
 import lombok.extern.slf4j.Slf4j;
 

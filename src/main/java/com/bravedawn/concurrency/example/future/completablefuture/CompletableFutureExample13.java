@@ -1,4 +1,4 @@
-package com.bravedawn.concurrency.example.future;
+package com.bravedawn.concurrency.example.future.completablefuture;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -6,11 +6,12 @@ import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * 需要并行运行多个互不相关的任务，这些任务之间没有依赖关系，可以互相独立地运行。可以使用`allOf()`函数来做。
+ * 需要并行运行多个互不相关的任务，这些任务之间没有依赖关系，可以互相独立地运行。可以使用`anyOf()`函数来做。
+ * 但是anyOf() 方法不会等待所有的 CompletableFuture 都运行完成之后再返回，只要有一个执行完成即可！
  */
 
 @Slf4j
-public class CompletableFutureExample12 {
+public class CompletableFutureExample13 {
 
 
     public static void main(String[] args) {
@@ -36,7 +37,7 @@ public class CompletableFutureExample12 {
             return "efg";
         });
 
-        CompletableFuture<Void> completableFuture = CompletableFuture.allOf(future1, future2);
+        CompletableFuture<Object> completableFuture = CompletableFuture.anyOf(future1, future2);
         // 调用 join() 可以让程序等future1 和 future2 都运行完了之后再继续执行。
         completableFuture.join();
         log.info("执行情况：{}", completableFuture.isDone());

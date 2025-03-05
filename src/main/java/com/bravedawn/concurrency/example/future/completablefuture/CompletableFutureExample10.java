@@ -1,20 +1,21 @@
-package com.bravedawn.concurrency.example.future;
+package com.bravedawn.concurrency.example.future.completablefuture;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * @author : depers
  * @program : concurrency
- * @date : Created in 2024/7/21 17:24
+ * @date : Created in 2024/7/21 18:06
  *
- * 通过`complete()`或是``completeExceptionally()``指定任务的完成情况，通过`whencomplete()`封装任务执行完成后的逻辑
+ * 通过捕获get方法的超时情况，异常终止a任务的执行
  */
-
 @Slf4j
-public class CompletableFutureExample9 {
+public class CompletableFutureExample10 {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         CompletableFuture<String> a = new CompletableFuture<>();
@@ -29,9 +30,11 @@ public class CompletableFutureExample9 {
             }
         });
 
-        log.info("开始获取结果");
-        // a.completeExceptionally(new RuntimeException("异常"));
-        Thread.sleep(2000);
-        a.complete("success");
+        try {
+            a.get(2, TimeUnit.SECONDS);
+        } catch (TimeoutException e) {
+            a.completeExceptionally(new RuntimeException("timeout"));
+        }
+
     }
 }
