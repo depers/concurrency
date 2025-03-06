@@ -21,6 +21,7 @@ public class CompletableFutureExample15 {
         List<CompletableFuture<Void>> futures = new ArrayList<>();
 
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+            System.out.println("开始执行逻辑任务1");
             log.info("开始执行逻辑任务1");
             try {
                 Thread.sleep(1000);
@@ -31,6 +32,7 @@ public class CompletableFutureExample15 {
         futures.add(future);
 
         CompletableFuture<Void> future2 = CompletableFuture.runAsync(() -> {
+            System.out.println("开始执行逻辑任务2");
             log.info("开始执行逻辑任务2");
             try {
                 Thread.sleep(1000);
@@ -43,11 +45,11 @@ public class CompletableFutureExample15 {
         CompletableFuture<Void> future3 = CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
         future3.thenRun(() -> {
             log.info("任务已全部执行完成");
+            System.out.println("任务已全部执行完成");
         });
+
+
         future3.join();
-
-
-
 
     }
 }
