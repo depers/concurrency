@@ -18,7 +18,7 @@ public class RateLimiterExample1 {
     /**
      * 每秒钟放入5个令牌，相当于每秒只允许执行5个请求
      */
-    private static final RateLimiter RATE_LIMITER = RateLimiter.create(5);
+    private static final RateLimiter RATE_LIMITER = RateLimiter.create(1);
 
     public static void main(String[] args) {
         // 模拟有100个请求
@@ -27,6 +27,8 @@ public class RateLimiterExample1 {
             if (RATE_LIMITER.tryAcquire(300, TimeUnit.MILLISECONDS)) {
                 // 获取成功，执行相应逻辑
                 handle(i);
+            } else {
+                log.info("没有获取到许可：{}", i);
             }
         }
     }
